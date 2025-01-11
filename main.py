@@ -11,7 +11,6 @@ from data.support import SupportMessage
 from forms.user import RegisterForm, LoginForm, ProfileForm
 
 from data.users import User
-from data.tests import Test
 
 import base64
 #bebra1
