@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<div class="d-grid gap-2">
+<a class="btn btn-dark btn-lg btn-block" href="/forum/create_thread" type="button" style="margin-bottom: 10px;">Начать обсуждение</a>
+    </div>
+{% if branches|length != 0 %}
+{% for branch in branches[::-1] %}
+            <div class="col-sm-6 mb-3">
+                <div class="card" style="width: auto">
+                    <div class="card-header">
+                         <div class="row justify-content-around">
+                              <div class="col-5">
+                                  <a href="/account/{{ branch.author.id }}">{{ branch.author.name }}</a>
+                              </div>
+                              <div class="col-5">
+                                  {{ branch.created_date }}
+                              </div>
+                            </div>
+
+                    </div>
+                    <div class="card-body">
+                    <div class="row">
+                       <div class="col-sm-6">
+                          <h5 class="card-title">{{branch.title}}</h5>
+                           <p class="card-text">{{branch.content}}</p>
+                        </div>
+                        <img class="col-sm-6 img-fluid rounded-start" src="data:image/png;base64,{{ branch.picture }}" alt="sans"/>
+                    </div>
+                        <p><a class="btn btn-dark" href="forum/{{ branch.id }}" role="button">Посетить</a>
+                            {% if (current_user.is_authenticated and current_user == branch.author) or current_user.is_admin == 1 %}
+                        <a class="btn btn-danger" href="forum/post_delete/{{ branch.id }}" role="button">Удалить</a>
+                        {% endif %}</p>
+                    </div>
+                </div>
+            </div>
+
+{% endfor %}
+{% else %}
+<h4>Веток форума пока нет!</h4>
+{% endif %}
+{% endblock %}

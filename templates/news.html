@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+{% if news|length != 0 %}
+{% for new in news[::-1] %}
+<div class="card mb-3" style="max-width: 840px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="data:image/png;base64,{{ new.picture }}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ new.title }}</h5>
+        <p class="card-text">{{ new.content }}</p>
+        <p class="card-text"><small class="text-body-secondary">{{ new.created_date }}</small></p>
+        {% if current_user.is_authenticated and current_user.is_admin == 1 %}
+            <a href="/news_delete/{{ new.id }}" class="btn btn-danger">Удалить</a></p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>----------------------------------------------------------</p>
+{% endfor %}
+{% else %}
+<h4>Новостей пока нет!</h4>
+{% endif %}
+{% endblock %}

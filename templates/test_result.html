@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Результат</h1>
+<h2>Поздравляем, вы прошли тест! Ваш результат: {{ res }}</h2>
+<button onclick="location.href='/test/{{test.id}}'" class="btn btn-secondary">Вернуться к странице теста</button>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post">
+    <div class="card">
+        <div class="card" style="width: auto">
+                    <div class="card-header">
+                                  <h1>Прохождение теста {{ n }}/{{ length }}</h1>
+                    </div>
+        <div class="card-body">
+    <h5 class="card-title"> {{ form.answers.label}}</h5>
+    <p class="card-text">{% for subfield in form.answers %}
+    <tr>
+        <td class="form-check-label">{{ subfield }}</td>
+        <td class="form-check-label">{{ subfield.label }}</td><br>
+    </tr>
+    {% endfor %}</p>
+            <p>{{form.submit(type="submit", class="btn btn-primary") }}</p>
+            </div>
+        </div>
+
+</form>
+{% endblock %}

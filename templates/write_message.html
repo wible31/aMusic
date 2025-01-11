@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<form method = "post" class="form-contact" enctype="multipart/form-data">
+    <div class="mb-3">
+    <label class="form-label">текст сообщения</label>
+        <textarea class="form-control" name="content" value="" required ></textarea>
+    </div>
+    <p><label>Изображение:</label></p>
+    <p>{{ form.hidden_tag() }}{{ form.file }}</p>
+    <input type="submit" value="Отправить " class="btn btn-dark"/>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{ super() }}
+<div class="text-center"> <h1 style="align: right;" >Добро пожаловать на сайт с тестами!</h1></div>
+<br>
+<h3><center> Актуальные тесты </center> </h3>
+<div class="row row-cols-md-3">
+{% for test in tests[-9:]%}
+<div class="col mb-3">
+<div class="card h-100">
+  <div class="card-body">
+    <h5 class="card-title">{{test.name}}</h5>
+    <p class="card-text">{{test.description}}</p>
+  </div>
+  <a href="test/{{test.id}}" class="btn btn-outline-primary" style="margin-bottom:10px ; max-width:250px; margin-left:10px;">Перейти к прохождению</a>
+</div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}
