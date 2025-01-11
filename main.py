@@ -29,25 +29,6 @@ def load_user(user_id):
     return db_sess.query(User).get(user_id)
 
 
-@app.route('/result')
-def result():
-    with db_session.create_session() as db_sess:
-        search_query = request.args.get('search').split()
-        res = []
-        tests = db_sess.query(Test).all()
-        for i in tests:
-            cur_search = ' '.join([str(i).lower() for i in str(i).split(';;')[1].split()])
-            for word in search_query:
-                if word.lower() in cur_search and i not in res:
-                    res.append(i)
-                elif word.lower() not in cur_search:
-                    break
-        res = [i for i in res[::-1]]
-        if len(res) > 9:
-            res = res[:9]
-
-        return render_template('search.html', tests=res, request=' '.join(search_query))
-
 
 @app.route('/')
 @app.route('/home')
