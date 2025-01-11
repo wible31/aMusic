@@ -34,9 +34,7 @@ def load_user(user_id):
 @app.route('/home')
 def home():
     with db_session.create_session() as db_sess:
-        tests = db_sess.query(Test).all()
-        print(tests[-1].id)
-        return render_template('main.html', tests=tests)
+        return render_template('main.html')
 
 
 @app.route('/account')

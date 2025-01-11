@@ -29,12 +29,6 @@
   		    <li class="nav-item active">
   		      <a class="nav-link" href="/account">Личный кабинет</a>
   		    </li>
-  		    <li class="nav-item">
-  		      <a class="nav-link" href="/news">Новости</a>
-  		    </li>
-			<li class="nav-item">
-				<a class="nav-link" href="/forum">Форум</a>
-			</li>
 			<li class="nav-item">
   		      <a class="nav-link" href="/support">Поддержка</a>
   		    </li>
@@ -43,10 +37,6 @@
 			{% if current_user.is_authenticated %}
                 <a class="navbar-brand" style="margin-right:100px">{{ current_user.name }}</a>
             {% endif %}
-  		  <form class="d-flex" action="{{ url_for('result') }}">
-  		    <input class="form-control me-2 w-200" type="text" placeholder="Search" aria-label="Search" name="search">
-  		    <button class="btn btn-primary" type="submit">Search</button>
-  		  </form>
 		</div>
 	</nav>
 	<main role="main" class="container-fluid" style="margin-top:80px">
