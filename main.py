@@ -43,8 +43,8 @@ def profile():
         if current_user.is_authenticated:
             cur_user = db_sess.query(User).get(current_user.get_id())
             dct = {}
-            if cur_user.test_results:
-                dct = eval(cur_user.test_results)
+            if cur_user.notes:
+                dct = eval(cur_user.notes)
             return render_template('account.html', user=cur_user, dct=dct)
         return redirect('/login')
 
@@ -173,22 +173,6 @@ def delete_profile(i):
         else:
             flash('У вас нет доступа к этой странице!', 'error')
         return redirect('/')
-
-
-@app.route('/admin/messages/')
-@login_required
-def admin_messages():
-    with db_session.create_session() as db_sess:
-        user = db_sess.query(User).get(current_user.get_id())
-        if user.is_admin != 1:
-            db_sess.close()
-            flash('У вас нет доступа к этой странице!', 'error')
-            return redirect('/')
-        else:
-            msgs = db_sess.query(SupportMessage).all()
-            return render_template('messages.html', msgs=msgs)
-
-
 
 
 @app.route('/support', methods=["POST", "GET"])

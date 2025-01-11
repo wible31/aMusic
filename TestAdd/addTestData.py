@@ -2,7 +2,7 @@ import datetime
 import json
 
 from data import db_session
-from data.tests import Test
+from data.sounds import Sound
 from data.users import User
 
 
